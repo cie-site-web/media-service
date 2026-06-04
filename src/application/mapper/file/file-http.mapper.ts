@@ -45,12 +45,14 @@ export class FileHttpMapper {
 
   static toResponse(entity: FileEntity): ResponseFileDto {
     return {
+      id: entity.id ?? "",
       publicId: entity.publicId,
       name: entity.name,
       path: entity.path,
       typeId: entity.typeId,
       size: entity.size.toString(),
       uploadedBy: entity.uploadedBy,
+      createdAt: entity.createdAt?.toISOString(),
     };
   }
 }

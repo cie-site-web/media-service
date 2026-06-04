@@ -1,20 +1,11 @@
 import { TypeNameEnum } from "src/domain/enums/type-name.enum";
-import { FormatEnum, FormatForName } from "src/domain/enums/format.enum";
+import { FormatEnum } from "src/domain/enums/format.enum";
 
-type TypeDiscriminatedProps =
-  | { name: TypeNameEnum.DOC; format: FormatForName<TypeNameEnum.DOC> }
-  | {
-      name: TypeNameEnum.IMAGE;
-      format: FormatForName<TypeNameEnum.IMAGE>;
-    }
-  | {
-      name: TypeNameEnum.VIDEO;
-      format: FormatForName<TypeNameEnum.VIDEO>;
-    };
-
-export type TypeProps = TypeDiscriminatedProps & {
+export type TypeProps = {
   readonly id?: string;
   publicId: string;
+  name: TypeNameEnum;
+  format: FormatEnum;
   readonly createdAt?: Date;
 };
 
