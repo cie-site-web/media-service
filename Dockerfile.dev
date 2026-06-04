@@ -4,10 +4,15 @@ WORKDIR /app
 
 COPY package*.json ./
 
+ENV PRISMA_CLIENT_ENGINE_TYPE=binary
+ENV PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1
+
 RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npx prisma generate
+
+EXPOSE 8206
 
 CMD ["npm", "run", "start:dev"]

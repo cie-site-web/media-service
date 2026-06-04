@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model TypeTable {
+  id         String   @id @default(uuid())
+  public_id  String   @unique
+  name       String
+  format     String
+
+  files      FileTable[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model FileTable {
+  id          String   @id @default(uuid())
+  public_id   String   @unique
+  name        String
+  path        String
+  size        BigInt
+  uploaded_by String
+
+  type_id     String
+  type_table  TypeTable @relation(fields: [type_id], references: [id])
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
