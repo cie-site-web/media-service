@@ -13,11 +13,13 @@ import { GetTypeValidator } from 'src/domain/service/validators/type/get-type.va
 import { ListTypeValidator } from 'src/domain/service/validators/type/list-type.validator';
 import { UpdateTypeValidator } from 'src/domain/service/validators/type/update-type.validator';
 import { PrismaModule } from 'src/infrastructure/database/prisma/prisma.module';
+import { TypeBootstrapService } from 'src/infrastructure/database/type-bootstrap.service';
 
 @Module({
   imports: [PrismaModule],
   controllers: [TypeControllerAdapter],
   providers: [
+    TypeBootstrapService,
     {
       provide: 'TypeRepositoryPort',
       useClass: TypeRepositoryAdapter,

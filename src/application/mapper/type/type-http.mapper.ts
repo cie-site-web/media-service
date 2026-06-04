@@ -39,6 +39,7 @@ export class TypeHttpMapper {
 
   static toResponse(entity: TypeEntity): ResponseTypeDto {
     return {
+      id: entity.id ?? "",
       publicId: entity.publicId,
       name: entity.name,
       format: entity.format,
